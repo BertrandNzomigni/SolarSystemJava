@@ -1,6 +1,6 @@
 package interfaces;
 /** Represent a location in the 2-D space. Beware : It doesn't represent a location on the screen. */
-public interface Location {
+public interface Location extends copyable {
     /** Change the location on the X-axis. */
     public double getX();
     public double getY();

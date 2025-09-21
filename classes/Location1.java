@@ -37,4 +37,8 @@ public class Location1 implements Location{
         return Math.atan2(loc2.getY() - y,loc2.getX() - x);
     }
     
+    public Location copy(){
+        Location cp = new Location1(x,y);
+        return cp;
+    }
 }

@@ -53,5 +53,12 @@ public class SpaceVector1 implements SpaceVector{
         return product;
 
     }
+
+    public SpaceVector copy(){
+        SpaceVector1 cp = new SpaceVector1();
+        cp.changeX(x);
+        cp.changeY(y);
+        return cp;
+    }
     
 }

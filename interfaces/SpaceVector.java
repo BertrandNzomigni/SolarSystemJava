@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface SpaceVector {
+public interface SpaceVector extends copyable {
     public double getX();
     public double getY();
     /** Return the sum of the vector with another vector. */

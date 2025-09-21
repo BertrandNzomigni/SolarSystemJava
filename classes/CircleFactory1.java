@@ -7,7 +7,6 @@ import java.util.List;
 import interfaces.CelestialObject;
 import interfaces.CircleFactory;
 import interfaces.Camera;
-import interfaces.Displayable;
 import interfaces.SolarSystem;
 
 public class CircleFactory1 implements CircleFactory {
@@ -21,8 +20,8 @@ public class CircleFactory1 implements CircleFactory {
     }
 
     @Override
-    public List<Displayable> createDisplayables() {
-        List<Displayable> entities = new ArrayList<>();
+    public List<Circle> createDisplayables() {
+        List<Circle> entities = new ArrayList<>();
         
         for (CelestialObject obj : system.getObjects()) {
             Point screenPos = camera.worldToScreen(obj.getLocation());

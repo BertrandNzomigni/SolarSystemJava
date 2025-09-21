@@ -2,6 +2,7 @@ package maincode;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.KeyEvent;
 
@@ -82,7 +83,8 @@ public class Simulation {
 
                 // Update display
                 panel.clear();
-                List<Displayable> displayables = circleFactory.createDisplayables();
+                List<Displayable> displayables = new ArrayList<Displayable>();
+                displayables.addAll(circleFactory.createDisplayables());
                 panel.addNewDisplayables(displayables,Long.valueOf(0));
                 nameManager.addNames();
                 panel.repaint();

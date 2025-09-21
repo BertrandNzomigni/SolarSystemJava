@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import interfaces.CelestialObject;
-import interfaces.FutureState;
+import interfaces.FutureStateGenerator;
 
-public class FutureStateImpl implements FutureState {
+public class FutureStateGeneratorImpl implements FutureStateGenerator{
 
     private static final double DELTA_TIME = 1.0; // one simulation cycle
 

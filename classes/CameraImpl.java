@@ -5,12 +5,12 @@ package classes;
 import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.Location;
-import interfaces.SolarSystem;
+import interfaces.copyable;
 
 import java.awt.Point;
 
 public class CameraImpl implements Camera {
-    private double zoom;
+    private double zoomRate;
     private int offsetX;
     private int offsetY;
     private int screenWidth;
@@ -18,10 +18,10 @@ public class CameraImpl implements Camera {
 
     private CelestialObject followed; // object currently followed, can be null
 
-    public CameraImpl(SolarSystem solarSystem, int screenWidth, int screenHeight) {
+    public CameraImpl(int screenWidth, int screenHeight) {
         this.screenWidth = screenWidth;
         this.screenHeight = screenHeight;
-        this.zoom = 0.000001;
+        this.zoomRate = 0.000001;
         this.offsetX = 0;
         this.offsetY = 0;
         this.followed = null;
@@ -44,7 +44,7 @@ public class CameraImpl implements Camera {
 
     @Override
     public void zoom(double factor) {
-        zoom *= factor;
+        zoomRate *= factor;
     }
 
     @Override
@@ -59,13 +59,28 @@ public class CameraImpl implements Camera {
             worldY -= center.getY();
         }
 
-        int screenX = (int) (screenWidth / 2 + worldX * zoom + offsetX);
-        int screenY = (int) (screenHeight / 2 - worldY * zoom + offsetY); // y flipped
+        int screenX = (int) (screenWidth / 2 + worldX * zoomRate + offsetX);
+        int screenY = (int) (screenHeight / 2 - worldY * zoomRate + offsetY); // y flipped
         return new Point(screenX, screenY);
     }
 
     public double getZoom(){
-        return zoom;
+        return zoomRate;
+    }
+
+    @Override
+    public CelestialObject getFollowedPlanet() {
+        return followed;
+    }
+
+    @Override
+    public copyable copy() {
+        CameraImpl newCamera = new CameraImpl(screenWidth, screenHeight);
+        newCamera.zoomRate = zoomRate;
+        newCamera.offsetX = offsetX;
+        newCamera.offsetY = offsetY;
+        return newCamera;
+        
     }
 }
 

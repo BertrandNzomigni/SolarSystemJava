@@ -32,7 +32,7 @@ public class NameManager1 implements NameManager{
     @Override
     public void addNames() {
         for (CelestialObject object : objects){
-            panel.addNewDisplayable(factory.createName(object,30),Long.valueOf(1));
+            panel.addNewDisplayable(factory.createName(object,30),Long.valueOf(2));
         }
     }
 

@@ -8,10 +8,8 @@ import interfaces.FutureStateGenerator;
 
 public class FutureStateGeneratorImpl implements FutureStateGenerator{
 
-    private static final double DELTA_TIME = 1.0; // one simulation cycle
-
     @Override
-    public List<CelestialObject> futureState(List<CelestialObject> baseState) {
+    public List<CelestialObject> futureState(List<CelestialObject> baseState,Double delta_time) {
         List<CelestialObject> copies = new ArrayList<>();
 
         // Step 1: deep copy all objects
@@ -29,8 +27,8 @@ public class FutureStateGeneratorImpl implements FutureStateGenerator{
 
         // Step 3: advance each copy by one cycle
         for (CelestialObject obj : copies) {
-            obj.accelerate(DELTA_TIME);
-            obj.move(DELTA_TIME);
+            obj.accelerate(delta_time);
+            obj.move(delta_time);
         }
 
         return copies;

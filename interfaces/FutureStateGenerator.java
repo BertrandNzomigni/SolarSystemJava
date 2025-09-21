@@ -7,5 +7,5 @@ public interface FutureStateGenerator {
      * 
      * @param baseState A list of celestial object which serves as the basis of the projection.
     */
-    public List<CelestialObject> futureState(List<CelestialObject> baseState);
+    public List<CelestialObject> futureState(List<CelestialObject> baseState, Double delta_time);
 }

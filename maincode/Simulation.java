@@ -7,14 +7,20 @@ import java.util.List;
 import java.awt.event.KeyEvent;
 
 import classes.SpacePanel1;
+import classes.TrajectoriesGenerator1;
+import classes.TrajectoriesManager1;
 import classes.CameraImpl;
 import classes.CircleFactory1;
+import classes.FutureStateGeneratorImpl;
 import classes.SolarSystem1;
 
 import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.Displayable;
+import interfaces.FutureStateGenerator;
 import interfaces.SolarSystem;
+import interfaces.TrajectoriesGenerator;
+import interfaces.TrajectoriesManager;
 import interfaces.KeyReader;
 import interfaces.NameFactory;
 import interfaces.NameManager;
@@ -27,19 +33,26 @@ public class Simulation {
 
     static Camera camera;
     static SpacePanel1 panel;
+    static TrajectoriesManager trajmanag;
 
     public static void main(String[] args) {
         // 1️⃣ Initialize solar system
         SolarSystem system = new SolarSystem1();
 
         // 2️⃣ Initialize camera
-        camera = new CameraImpl(system, 600, 600);
-        camera.follow(system.getObjects().get(1));
+        camera = new CameraImpl(600, 600);
+        camera.follow(null);
 
         // 3️⃣ Initialize panel
         CircleFactory circleFactory = new CircleFactory1(system,camera);
         NameFactory nameFactory = new NameFactory1(camera,30);
         panel = new SpacePanel1();
+
+        FutureStateGenerator futureGen = new FutureStateGeneratorImpl();
+        TrajectoriesGenerator trajectoriesGenerator = new TrajectoriesGenerator1(system,futureGen,camera);
+        trajmanag = new TrajectoriesManager1(trajectoriesGenerator, panel);
+        trajmanag.setInterval(1000);
+        trajmanag.setSteps(Math.pow(10, 5));
 
         NameManager nameManager = new NameManager1(nameFactory,panel);
         nameManager.toggleName(system.getObjects().get(0));
@@ -84,8 +97,12 @@ public class Simulation {
                 // Update display
                 panel.clear();
                 List<Displayable> displayables = new ArrayList<Displayable>();
+
                 displayables.addAll(circleFactory.createDisplayables());
-                panel.addNewDisplayables(displayables,Long.valueOf(0));
+                panel.addNewDisplayables(displayables,Long.valueOf(1));
+                
+                trajmanag.evaluate();
+
                 nameManager.addNames();
                 panel.repaint();
             }

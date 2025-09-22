@@ -2,7 +2,7 @@ package interfaces;
 
 import java.awt.Color;
 /** Represents a celestial object in a 2D space. */
-public interface CelestialObject extends copyable{
+public interface CelestialObject extends Copyable{
     /** Return the location of the celestial object (in meters). */
     public Location getLocation();
     /** Returns the radius of the celestial object (in meters) */
@@ -29,4 +29,7 @@ public interface CelestialObject extends copyable{
      * @param center Another celestial object.
      */
     public void orbitalSpeed(CelestialObject center);
+
+    /** Returns the velocity of the celestial object. */
+    public SpaceVector getVelocity();
 }

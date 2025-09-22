@@ -51,8 +51,8 @@ public class Simulation {
         FutureStateGenerator futureGen = new FutureStateGeneratorImpl();
         TrajectoriesGenerator trajectoriesGenerator = new TrajectoriesGenerator1(system,futureGen,camera);
         trajmanag = new TrajectoriesManager1(trajectoriesGenerator, panel);
-        trajmanag.setInterval(1000);
-        trajmanag.setSteps(Math.pow(10, 5));
+        trajmanag.setInterval(0);
+        trajmanag.setSteps(Math.pow(10, 4) * 4);
 
         NameManager nameManager = new NameManager1(nameFactory,panel);
         nameManager.toggleName(system.getObjects().get(0));

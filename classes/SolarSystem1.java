@@ -12,7 +12,7 @@ public class SolarSystem1 implements SolarSystem{
         objects = new ArrayList<CelestialObject>();
         Double mass = 5.972 * Math.pow(10,24);
         Double radius = 6378.0 * 1000;
-        objects.add( new CelestialObjectImplementation("Terre",radius,mass,new Location1(0.0,0.0),new Color(0,255,0),new SpaceVector1(), new SpaceVector1()));
+        objects.add( new CelestialObjectImplementation("Terre",radius,mass,new Location1(0.0,0.0),new Color(0,255,0),new SpaceVector1(), new SpaceVector1(Double.valueOf(100),Double.valueOf(20))));
         
         mass = 8.1 * Math.pow(10,19);
         radius = 1734.0 * 1000;
@@ -36,13 +36,13 @@ public class SolarSystem1 implements SolarSystem{
     @Override
     public void accelerate() {
         for (CelestialObject object : objects){
-            object.accelerate(100);
+            object.accelerate(200);
         }
     }
     @Override
     public void move() {
         for (CelestialObject object : objects){
-            object.move(100);
+            object.move(200);
         }
     }
 

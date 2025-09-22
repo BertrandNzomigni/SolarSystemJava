@@ -29,7 +29,7 @@ public class TrajectoriesGenerator1 implements TrajectoriesGenerator{
         numberObjects = system.getObjects().size();
         array.add(system.getObjects());
         for (int i = 0; i < steps; i++) {
-            array.add(futureState.futureState(array.get(array.size() - 1),Double.valueOf(50)));
+            array.add(futureState.futureState(array.get(array.size() - 1),Double.valueOf(100)));
         }
         List<Trajectory> trajectories = new ArrayList<Trajectory>();
         List<Location> locations;
@@ -64,7 +64,7 @@ public class TrajectoriesGenerator1 implements TrajectoriesGenerator{
         }
         else{
             for (int x = 0; x < steps; x++){
-                cameraSpots.add(array.get(0).get(0));
+                cameraSpots.add(null);
             }
         }
         return cameraSpots;

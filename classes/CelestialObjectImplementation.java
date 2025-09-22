@@ -5,7 +5,7 @@ import java.awt.Color;
 import interfaces.CelestialObject;
 import interfaces.Location;
 import interfaces.SpaceVector;
-import interfaces.copyable;
+import interfaces.Copyable;
 
 public class CelestialObjectImplementation implements CelestialObject{
     
@@ -83,13 +83,18 @@ public class CelestialObjectImplementation implements CelestialObject{
 
     @Override
     public void orbitalSpeed(CelestialObject center) {
-        Double magnitude = Math.sqrt(((mass + center.getMass()) * 6.6743  * Math.pow(10,-11) * 0.3) / distance(center));
+        Double magnitude = Math.sqrt(((mass + center.getMass()) * 6.6743  * Math.pow(10,-11)) / distance(center));
         Double angle = location.angle(center.getLocation()) + Math.PI/2;
-        velocity_vector = new SpaceVector1(magnitude,angle);
+        velocity_vector = (new SpaceVector1(magnitude,angle)).summation(center.getVelocity());
     }
 
     @Override
-    public copyable copy() {
+    public Copyable copy() {
         return new CelestialObjectImplementation(name, radius, mass, (Location)location.copy(), color, (SpaceVector)force_vector.copy(), (SpaceVector)velocity_vector.copy());
+    }
+
+    @Override
+    public SpaceVector getVelocity() {
+        return velocity_vector;
     }
 }

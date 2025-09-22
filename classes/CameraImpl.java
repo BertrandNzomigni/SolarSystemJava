@@ -5,7 +5,7 @@ package classes;
 import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.Location;
-import interfaces.copyable;
+import interfaces.Copyable;
 
 import java.awt.Point;
 
@@ -74,7 +74,7 @@ public class CameraImpl implements Camera {
     }
 
     @Override
-    public copyable copy() {
+    public Copyable copy() {
         CameraImpl newCamera = new CameraImpl(screenWidth, screenHeight);
         newCamera.zoomRate = zoomRate;
         newCamera.offsetX = offsetX;

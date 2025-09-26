@@ -13,7 +13,7 @@ public interface Camera extends Copyable{
     void moveX(int change);
     /** Shifts the camera on the Y axis. If it follows an object, it will keep following it. */
     void moveY(int change);
-    /** Follow the movement of a object. */
+    /** Follow the movement of a object. If object = null, it won't follow any object.*/
     void follow(CelestialObject object);
     /** Return the followed object. */
     CelestialObject getFollowedPlanet();

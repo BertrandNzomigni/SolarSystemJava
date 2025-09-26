@@ -1,1 +1,25 @@
 - Garde tes interfaces cohérentes et concentrés
+
+Raisons de changer :
+- Création d'un nouveau type de menu
+
+Module d'affichage du menu navigation (MAMN):
+
+Termes :
+Designateur d'un astre : Texte ayant pour contenu le nom d'un astre
+
+Responsabilité du MAMN :
+
+Le MAMN est responsable de l'affichage du menu de navigation. Le menu de navigation permet à l'utilisateur de changer l'astre suivi par la caméra. Le menu de navigation est constitué d'un rectangle. Ce rectangle contient les designateurs de tous les astres . Lorsqu'un utilisateur clique sur le désignateur d'un astre et que le menu de navigation est visible, la caméra suivra désormais cet astre. Si le menu n'est pas visible et que l'utilisateur appuye sur le bouton "F", le menu devient visible. Si le menu est visible et que l'utilisateur appuye sur le bouton "F", le menu devient invisible. 
+
+Chaque désignateur a une taille fixe.
+
+Fonctionnement externe :
+
+Le MAMN est une instance de la classe "MAMN". Le MAMN est instancié uniquement lorsque le menu doit être affiché. Si l'utilisateur appuye sur "F" alors que le MAMN n'existe pas, le MAMN est construit dans une liste de menus. Si l'utilisateur appuye sur "F" alors que le MAMN existe, le MAMN est détruit. Lors du parcours de la boucle principale, l'objet "Main" appelle une méthode commune aux objets menus. C'est la méthode d'affichage. Cette méthode renvoie un objet "Displayable". Cet objet "Displayable" peut être passé en paramètres à une méthode de l'objet "SpacePanel". L'objet "SpacePanel" affichera un menu pour chaque objet "Displayable" passé en paramètres. Le menu affiché est celui de l'objet menu ayant produit l'objet "Displayable".
+
+Le MAMN dispose d'une seconde méthode. C'est la méthode de lecture. Cette méthode prend en paramètres un point. Si le point est sur un désignateur de l'astre, alors la méthode renvoie une référence sur un objet "CelestialObject". Si le point n'est pas sur un désignateur d'astre, la méthode renvoie None.
+
+Constructeur :
+
+Le constructeur de MAMN prend en paramètres une liste d'objet "CelestialObject". Cette liste est stockée dans un attribut de MAMN. Ensuite, le constructeur calcule les dimensions du rectangle du menu de navigation. La largeur et la hauteur sont stockées dans deux variables. Ensuite, le constructeur appelle le constructeur de la classe "ZoneTexte" pour chaque objet "CelestialObject". Ce constructeur recoit en paramètres les dimensions des zones de texte.

@@ -24,4 +24,4 @@ Constructeur :
 
 Le constructeur de MAMN prend en paramètres une liste d'objet "CelestialObject". Cette liste est stockée dans un attribut de MAMN. Ensuite, le constructeur calcule les dimensions du rectangle du menu de navigation. La largeur et la hauteur sont stockées dans deux variables. 
 
-Ensuite, le constructeur appelle le constructeur de la classe "Designateur" pour chaque objet "CelestialObject". Le MAMN passe en paramètre de ce constructeur le nom d'un "CelestialObject". Le MAMN passe en paramètre de ce constructeur une position sur le rectangle. Ces positions s'appelleront positions de désignateurs. L'action d Tous les objets désignateurs sont stockées dans une liste.
+Ensuite, le constructeur appelle le constructeur de la classe "Designateur" pour chaque objet "CelestialObject". Le MAMN passe en paramètre de ce constructeur le nom d'un "CelestialObject". Le MAMN passe en paramètre de ce constructeur une position sur le rectangle. Ces positions s'appelleront positions de désignateurs. Tous les objets désignateurs sont stockées dans une liste.

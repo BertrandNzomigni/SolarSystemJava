@@ -1,0 +1,4 @@
+- Réduire la taille du main() à max 15 lignes (Fait)
+- Ajouter la possibilité d'obtenir un astre par son nom. (Fait)
+- Changer la situations où j'obtiens un astre en fouillant dans la liste de SolarSystem en situation où j'utilise la méthode GetObjectByName() dans construct() (Fait)
+- Centraliser le calcul des forces, des accélerations et des déplacements dnas CelestialObject et SolarSystem (Fait)

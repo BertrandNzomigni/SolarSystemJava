@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.KeyEvent;
 
 import classes.SpacePanel1;
 import classes.TrajectoriesGenerator1;
@@ -13,6 +12,7 @@ import classes.CameraImpl;
 import classes.CircleFactory1;
 import classes.FutureStateGeneratorImpl;
 import classes.SolarSystem1;
+import classes.NavigationMenu1;
 
 import interfaces.Camera;
 import interfaces.CelestialObject;
@@ -34,17 +34,32 @@ public class Simulation {
     static Camera camera;
     static SpacePanel1 panel;
     static TrajectoriesManager trajmanag;
+    static CircleFactory circleFactory;
+    static KeyReader keyReader;
+    static SolarSystem system;
+    static NameManager nameManager;
+    static Timer timer;
+
 
     public static void main(String[] args) {
+        construct();
+
+        // 6️⃣ Start simulation Timer (~60 FPS)
+        init_timer();
+
+        timer.start(); // Start the loop
+    }
+
+    public static void construct(){
         // 1️⃣ Initialize solar system
-        SolarSystem system = new SolarSystem1();
+        system = new SolarSystem1();
 
         // 2️⃣ Initialize camera
         camera = new CameraImpl(600, 600);
         camera.follow(null);
 
         // 3️⃣ Initialize panel
-        CircleFactory circleFactory = new CircleFactory1(system,camera);
+        circleFactory = new CircleFactory1(system,camera);
         NameFactory nameFactory = new NameFactory1(camera,30);
         panel = new SpacePanel1();
 
@@ -54,9 +69,9 @@ public class Simulation {
         trajmanag.setInterval(0);
         trajmanag.setSteps(Math.pow(10, 4) * 4);
 
-        NameManager nameManager = new NameManager1(nameFactory,panel);
-        nameManager.toggleName(system.getObjects().get(0));
-        nameManager.toggleName(system.getObjects().get(1));
+        nameManager = new NameManager1(nameFactory,panel);
+        nameManager.toggleName(system.getObjectByName("Terre"));
+        nameManager.toggleName(system.getObjectByName("Lune"));
         // 4️⃣ Setup JFrame
         JFrame mainFrame = new JFrame("Solar System Simulation");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,17 +80,15 @@ public class Simulation {
         mainFrame.setVisible(true);
 
         // 5️⃣ Keyboard input
-        KeyReader keyReader = new KeyReaderImpl();
+        keyReader = new KeyReaderImpl();        
+    }
 
-        // 6️⃣ Start simulation Timer (~60 FPS)
-        Timer timer = new Timer(16, new ActionListener() {
+    public static void init_timer(){
+        timer = new Timer(16, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Update simulation
-                system.apply_forces();
-                system.accelerate();
-                system.move();
-
+                system.advanceToNewState();
                 // Handle keyboard input
                 if (keyReader.newKey()) {
                     KeyEvent key = keyReader.lastInput();
@@ -104,10 +117,10 @@ public class Simulation {
                 trajmanag.evaluate();
 
                 nameManager.addNames();
+
+                panel.addNewDisplayable((Displayable)new NavigationMenu1(600,600,system.getObjects()),Long.valueOf(3));
                 panel.repaint();
             }
         });
-
-        timer.start(); // Start the loop
     }
 }

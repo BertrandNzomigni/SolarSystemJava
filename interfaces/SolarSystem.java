@@ -7,8 +7,13 @@ public interface SolarSystem {
     public void apply_forces();
     /** Change each celestial body velocity based on the current net force. */
     public void accelerate();
-    /** Chang each celestial body location based on the velocity. */
+    /** Change each celestial body location based on the velocity. */
     public void move();
-    
+    /** Returns a list of all celestial objects in the solar system. */
     public List<CelestialObject> getObjects();
+
+    public CelestialObject getObjectByName(String name);
+
+    public void advanceToNewState();
+
 }

@@ -7,6 +7,7 @@ import interfaces.Location;
 import interfaces.SpaceVector;
 import interfaces.Copyable;
 
+
 public class CelestialObjectImplementation implements CelestialObject{
     
     private String name;

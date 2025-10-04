@@ -49,4 +49,19 @@ public class SolarSystem1 implements SolarSystem{
     public List<CelestialObject> getObjects(){
         return objects;
     }
+    @Override
+    public CelestialObject getObjectByName(String name) {
+        for (CelestialObject celestialObject : objects) {
+            if (celestialObject.getName() == name){
+                return celestialObject;
+            }
+        }
+        return null;
+    }
+
+    public void advanceToNewState(){
+        apply_forces();
+        accelerate();
+        move();
+    }
 }

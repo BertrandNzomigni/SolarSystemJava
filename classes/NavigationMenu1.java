@@ -7,6 +7,7 @@ import java.util.List;
 
 import interfaces.CelestialObject;
 import interfaces.CelestialObjectName;
+import interfaces.Displayable;
 import interfaces.NavigationMenu;
 import interfaces.SpacePanel;
 
@@ -31,7 +32,8 @@ public class NavigationMenu1 implements NavigationMenu{
         g.setColor(Color.gray);
         g.fillRect(0,0,(int)(0.25 * screenWidth),(int)(0.4 * screenHeight));
         for (CelestialObjectName name : this.names){
-
+            panel.addNewDisplayable((Displayable)name,Long.valueOf(4));
+            
         }
         
     }

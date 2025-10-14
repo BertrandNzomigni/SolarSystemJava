@@ -6,8 +6,6 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JPanel;
-
 import interfaces.Displayable;
 import interfaces.SpacePanel;
 
@@ -16,18 +14,19 @@ public class Text implements Displayable{
     private int x;
     private int y;
     private int size;
+    private Font font;
     /** Create a displayable text. The coordinates are that of the text's top-center. */
     public Text(String _content, int _x, int _y, int _size){
         content = _content;
         x = _x;
         y = _y;
         size = _size;
+        font = new Font("Arial", Font.PLAIN, size);
     }
     
     @Override
     public void display(Graphics g, SpacePanel panel) {
         Graphics2D g2d = (Graphics2D) g;
-        Font font = new Font("Arial", Font.PLAIN, size);
         g2d.setFont(font);
         g2d.setColor(Color.WHITE);
 

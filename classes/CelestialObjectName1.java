@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Graphics2D;
 
 import interfaces.CelestialObject;
 import interfaces.CelestialObjectName;
@@ -18,27 +19,25 @@ public class CelestialObjectName1 implements CelestialObjectName {
     CelestialObject object;
     String content;
     Font font;
-    Graphics graphics;
     public CelestialObjectName1(int x,int y,CelestialObject object){
         this.x = x;
         this.y = y;
         this.object = object;
         content = object.get_name();
-        font = new Font("Arial", Font.PLAIN, 10);
+        font = new Font("Arial", Font.PLAIN, 20);
     }
 
     @Override
     public void display(Graphics g, SpacePanel panel) {
-        g.setFont(font);
-        g.setColor(Color.WHITE);
-        g.drawString(content, x, y);
-        graphics = g;
-
-
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setFont(font);
+        g2d.setColor(Color.RED);
+        g2d.drawString(content, x, y);
+        System.out.println(content);
     }
 
     @Override
-    public boolean isClicked(Point point) {
+    public boolean isClicked(Point point,Graphics graphics) {
         FontMetrics metrics = graphics.getFontMetrics(font);
         int textWidth = metrics.stringWidth(content);
         int textHeight = metrics.getHeight();

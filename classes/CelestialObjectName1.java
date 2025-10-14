@@ -6,10 +6,9 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import javax.swing.JPanel;
-
 import interfaces.CelestialObject;
 import interfaces.CelestialObjectName;
+import interfaces.SpacePanel;
 
 
 /** Represents the name of a celestial object in a menu. */
@@ -29,7 +28,7 @@ public class CelestialObjectName1 implements CelestialObjectName {
     }
 
     @Override
-    public void display(Graphics g, JPanel panel) {
+    public void display(Graphics g, SpacePanel panel) {
         g.setFont(font);
         g.setColor(Color.WHITE);
         g.drawString(content, x, y);

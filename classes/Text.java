@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import interfaces.Displayable;
+import interfaces.SpacePanel;
 
 public class Text implements Displayable{
     private String content;
@@ -24,7 +25,7 @@ public class Text implements Displayable{
     }
     
     @Override
-    public void display(Graphics g, JPanel panel) {
+    public void display(Graphics g, SpacePanel panel) {
         Graphics2D g2d = (Graphics2D) g;
         Font font = new Font("Arial", Font.PLAIN, size);
         g2d.setFont(font);

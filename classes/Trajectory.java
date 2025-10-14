@@ -5,12 +5,12 @@ import java.awt.Point;
 import java.awt.geom.GeneralPath;
 import java.util.List;
 
-import javax.swing.JPanel;
 
 import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.Displayable;
 import interfaces.Location;
+import interfaces.SpacePanel;
 
 public class Trajectory implements Displayable {
     List<Location> locations;
@@ -23,7 +23,7 @@ public class Trajectory implements Displayable {
     }
 
     @Override
-    public void display(Graphics g, JPanel panel) {
+    public void display(Graphics g, SpacePanel panel) {
         Graphics2D g2d = (Graphics2D) g;
         GeneralPath path = new GeneralPath();
         Point first = getPoint(0);

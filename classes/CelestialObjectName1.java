@@ -24,7 +24,7 @@ public class CelestialObjectName1 implements CelestialObjectName {
         this.x = x;
         this.y = y;
         this.object = object;
-        content = object.getName();
+        content = object.get_name();
         font = new Font("Arial", Font.PLAIN, 10);
     }
 

@@ -37,7 +37,7 @@ public class TrajectoriesGenerator1 implements TrajectoriesGenerator{
         for (int i = 0; i < numberObjects; i++){
             locations = new ArrayList<Location>();
             for (int x = 0; x < steps; x++){
-                locations.add(array.get(x).get(i).getLocation());
+                locations.add(array.get(x).get(i).get_location());
             }
             trajectories.add(new Trajectory(locations,cameraSpots,camera));
         }
@@ -49,7 +49,7 @@ public class TrajectoriesGenerator1 implements TrajectoriesGenerator{
         int i = 0;
         boolean notFound = true;
         while (notFound && i < numberObjects){
-            if (array.get(0).get(i) == camera.getFollowedPlanet()){
+            if (array.get(0).get(i) == camera.get_followed_planet()){
                 notFound = false;
             }
             else{

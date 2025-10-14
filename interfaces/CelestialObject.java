@@ -4,15 +4,15 @@ import java.awt.Color;
 /** Represents a celestial object in a 2D space. */
 public interface CelestialObject extends Copyable{
     /** Return the location of the celestial object (in meters). */
-    public Location getLocation();
+    public Location get_location();
     /** Returns the radius of the celestial object (in meters) */
-    public Double getRadius();
+    public Double get_radius();
     /** Returns the name of the celestial object. */
-    public String getName();
+    public String get_name();
     /** Returns the mass of the celestial object (in Kilograms) */
-    public Double getMass();
+    public Double get_mass();
     /** Returns the color of the celestial object. */
-    public Color getColor();
+    public Color get_color();
 
     /** Set the net force of the celestial object at zero. */
     public void resetForce();

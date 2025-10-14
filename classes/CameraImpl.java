@@ -33,17 +33,17 @@ public class CameraImpl implements Camera {
     }
 
     @Override
-    public void moveX(int change) {
+    public void move_on_x_axis(int change) {
         offsetX += change;
     }
 
     @Override
-    public void moveY(int change) {
+    public void move_on_y_axis(int change) {
         offsetY += change;
     }
 
     @Override
-    public void zoom(double factor) {
+    public void change_zoom_rate_by_factor_multiplication(double factor) {
         zoomRate *= factor;
     }
 
@@ -54,7 +54,7 @@ public class CameraImpl implements Camera {
 
         // If following an object, center on it
         if (followed != null) {
-            Location center = followed.getLocation();
+            Location center = followed.get_location();
             worldX -= center.getX();
             worldY -= center.getY();
         }
@@ -64,12 +64,12 @@ public class CameraImpl implements Camera {
         return new Point(screenX, screenY);
     }
 
-    public double getZoom(){
+    public double get_zoom_rate(){
         return zoomRate;
     }
 
     @Override
-    public CelestialObject getFollowedPlanet() {
+    public CelestialObject get_followed_planet() {
         return followed;
     }
 

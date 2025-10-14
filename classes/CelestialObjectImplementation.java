@@ -32,27 +32,27 @@ public class CelestialObjectImplementation implements CelestialObject{
     }
 
     @Override
-    public Location getLocation() {
+    public Location get_location() {
         return location;
     }
 
     @Override
-    public Double getRadius() {
+    public Double get_radius() {
         return radius;
     }
 
     @Override
-    public String getName() {
+    public String get_name() {
         return name;
     }
 
     @Override
-    public Double getMass() {
+    public Double get_mass() {
         return mass;
     }
 
     @Override
-    public Color getColor() {
+    public Color get_color() {
         return color;
     }
 
@@ -63,8 +63,8 @@ public class CelestialObjectImplementation implements CelestialObject{
 
     @Override
     public void applyGravitationalForce(CelestialObject source) {
-        Double magnitude = (mass * source.getMass()) / (Math.pow(distance(source),2)) * 6.6743  * Math.pow(10,-11);
-        SpaceVector force = new SpaceVector1(magnitude,location.angle(source.getLocation()));
+        Double magnitude = (mass * source.get_mass()) / (Math.pow(distance(source),2)) * 6.6743  * Math.pow(10,-11);
+        SpaceVector force = new SpaceVector1(magnitude,location.angle(source.get_location()));
         force_vector = force_vector.summation(force);
     }  
 
@@ -79,13 +79,13 @@ public class CelestialObjectImplementation implements CelestialObject{
     }
 
     private Double distance(CelestialObject object2) {
-        return location.distance(object2.getLocation());
+        return location.distance(object2.get_location());
     }
 
     @Override
     public void orbitalSpeed(CelestialObject center) {
-        Double magnitude = Math.sqrt(((mass + center.getMass()) * 6.6743  * Math.pow(10,-11)) / distance(center));
-        Double angle = location.angle(center.getLocation()) + Math.PI/2;
+        Double magnitude = Math.sqrt(((mass + center.get_mass()) * 6.6743  * Math.pow(10,-11)) / distance(center));
+        Double angle = location.angle(center.get_location()) + Math.PI/2;
         velocity_vector = (new SpaceVector1(magnitude,angle)).summation(center.getVelocity());
     }
 

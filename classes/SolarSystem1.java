@@ -52,7 +52,7 @@ public class SolarSystem1 implements SolarSystem{
     @Override
     public CelestialObject getObjectByName(String name) {
         for (CelestialObject celestialObject : objects) {
-            if (celestialObject.getName() == name){
+            if (celestialObject.get_name() == name){
                 return celestialObject;
             }
         }

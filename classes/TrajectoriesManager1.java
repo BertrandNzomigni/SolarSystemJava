@@ -27,7 +27,7 @@ public class TrajectoriesManager1 implements TrajectoriesManager{
         pastTrajectories = generator.generate(steps);
     }
     @Override
-    public void evaluate() {
+    public void drawTrajectoriesOrReduceIterator() {
         List<Displayable> l = new ArrayList<Displayable>();
         if (iterator <= 0){
             pastTrajectories = generator.generate(steps);

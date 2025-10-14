@@ -5,5 +5,5 @@ public interface NameManager {
     public void toggleName(CelestialObject object);
 
     /** This method add the names to the label. */
-    public void addNames();
+    public void writeNames();
 }

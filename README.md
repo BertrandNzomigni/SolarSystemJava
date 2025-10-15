@@ -4,4 +4,6 @@ L'objectif de ce projet est de simuler le système solaire. Les astres du systè
 ### Contrôles :
 Touches directionelles : Déplacer la caméra<br>
 X : Zommer<br>
-C : Dézoomer
+C : Dézoomer<br>
+F : Montrer/Cacher le menu de navigation
+P : Ne plus suivre une planète

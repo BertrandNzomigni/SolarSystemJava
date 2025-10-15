@@ -1,6 +1,5 @@
 package classes;
 
-import javax.swing.*;
 import java.awt.*;
 import interfaces.Displayable;
 import interfaces.SpacePanel;

@@ -13,6 +13,9 @@ import classes.CircleFactory1;
 import classes.FutureStateGeneratorImpl;
 import classes.SolarSystem1;
 import classes.NavigationMenu1;
+import classes.KeyReaderImpl;
+import classes.NameFactory1;
+import classes.NameManager1;
 
 import interfaces.Camera;
 import interfaces.CelestialObject;
@@ -25,9 +28,8 @@ import interfaces.KeyReader;
 import interfaces.NameFactory;
 import interfaces.NameManager;
 import interfaces.CircleFactory;
-import classes.KeyReaderImpl;
-import classes.NameFactory1;
-import classes.NameManager1;
+import interfaces.NavigationMenu;
+
 
 public class Simulation {
 
@@ -68,11 +70,14 @@ public class Simulation {
         setup_future_trajectory_generation();
 
         create_frame_configure_frame_add_panel_to_frame_show_frame();
-        // 5️⃣ Keyboard input
-        keyReader = new KeyReaderImpl();        
+        
+        keyReader = new KeyReaderImpl(panel);
     }
 
     public static void init_timer(){
+        panel.setFocusable(true);
+        panel.requestFocusInWindow(); // so it can receive key input
+
         timer = new Timer(16, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,8 +90,7 @@ public class Simulation {
                         case KeyEvent.VK_X: camera.change_zoom_rate_by_factor_multiplication(1.2); break;   // zoom in
                         case KeyEvent.VK_C: camera.change_zoom_rate_by_factor_multiplication(1/1.2); break; // zoom out
                         case KeyEvent.VK_F:                               // follow first planet for example
-                            List<CelestialObject> objects = system.getObjects();
-                            if (!objects.isEmpty()) camera.follow(objects.get(0));
+                            camera.follow(null);;
                             break;
                         case KeyEvent.VK_P: camera.follow(null); break;   // stop following
                         case KeyEvent.VK_LEFT: camera.move_on_x_axis(10); break;
@@ -136,8 +140,13 @@ public class Simulation {
         trajmanag.drawTrajectoriesOrReduceIterator();
 
         nameManager.writeNames();
+        NavigationMenu nav = new NavigationMenu1(600,600,system.getObjects(),camera);
 
-        panel.addNewDisplayable((Displayable)new NavigationMenu1(600,600,system.getObjects()),Long.valueOf(3));
+        panel.addNewDisplayable((Displayable)nav,Long.valueOf(3));
+        displayables = new ArrayList<Displayable>();
+        displayables.addAll(nav.get_names());
+
+        panel.addNewDisplayables(displayables,Long.valueOf(4));
         panel.repaint();
     }
 }

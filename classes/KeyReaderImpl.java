@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import interfaces.KeyReader;
+import interfaces.SpacePanel;
 
 public class KeyReaderImpl implements KeyReader {
 
@@ -13,7 +14,7 @@ public class KeyReaderImpl implements KeyReader {
     private final AtomicReference<KeyEvent> lastKey = new AtomicReference<>();
     private final AtomicBoolean hasNewKey = new AtomicBoolean(false);
 
-    public KeyReaderImpl() {
+    public KeyReaderImpl(SpacePanel1 panel) {
         // Create a hidden JFrame to capture key presses
         JFrame frame = new JFrame();
         frame.setSize(200, 100);
@@ -23,7 +24,7 @@ public class KeyReaderImpl implements KeyReader {
         frame.setVisible(true);
 
         // Listen to key events
-        frame.addKeyListener(new KeyAdapter() {
+        panel.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 lastKey.set(e);
@@ -45,19 +46,5 @@ public class KeyReaderImpl implements KeyReader {
     @Override
     public Boolean newKey() {
         return hasNewKey.get();
-    }
-
-    // Test main method
-    public static void main(String[] args) throws InterruptedException {
-        KeyReader reader = new KeyReaderImpl();
-
-        System.out.println("Press keys, program will notify if a new key was pressed...");
-
-        while (true) {
-            if (reader.newKey()) {
-                System.out.println("New key detected: " + reader.lastInput());
-            }
-            Thread.sleep(200);
-        }
     }
 }

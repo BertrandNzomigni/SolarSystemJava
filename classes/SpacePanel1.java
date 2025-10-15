@@ -24,14 +24,6 @@ public class SpacePanel1 extends JPanel implements SpacePanel{
         hasContent = new ArrayList<Long>();
         setBackground(Color.BLACK);
 
-        
-    }
-
-    @Override
-    public void addNewDisplayable(Displayable displayable, Long level) {
-        checkLevel(level);
-        content.get(level).add(displayable);
-
         addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 Point click = e.getPoint();
@@ -49,12 +41,25 @@ public class SpacePanel1 extends JPanel implements SpacePanel{
                 }
             }
         });
+
+        
+    }
+
+    @Override
+    public void addNewDisplayable(Displayable displayable, Long level) {
+        checkLevel(level);
+        content.get(level).add(displayable);
+        addNewDisplayables(displayable.components(), level+1);
+
     }
 
     public void addNewDisplayables(List<Displayable> displayables, Long level){
-        checkLevel(level);
-        for (Displayable displayable : displayables){
-            content.get(level).add(displayable);
+        if (displayables.size() > 0){
+            checkLevel(level);
+            for (Displayable displayable : displayables){
+                content.get(level).add(displayable);
+                addNewDisplayables(displayable.components(), level+1);
+            }
         }
     }
     protected void paintComponent(Graphics g) {

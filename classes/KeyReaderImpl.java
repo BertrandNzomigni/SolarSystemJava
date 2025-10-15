@@ -6,7 +6,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import interfaces.KeyReader;
-import interfaces.SpacePanel;
 
 public class KeyReaderImpl implements KeyReader {
 

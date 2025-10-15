@@ -9,6 +9,7 @@ import java.util.List;
 import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.CelestialObjectName;
+import interfaces.Displayable;
 import interfaces.NavigationMenu;
 import interfaces.SpacePanel;
 
@@ -45,6 +46,14 @@ public class NavigationMenu1 implements NavigationMenu{
     @Override
     public CelestialObject isClicked() {
         throw new UnsupportedOperationException("Unimplemented method 'isClicked'");
+    }
+    @Override
+    public List<Displayable> components() {
+        List<Displayable> displayables = new ArrayList<Displayable>();
+        for (CelestialObjectName name : names){
+            displayables.add(name);
+        }
+        return displayables;
     }
     
 }

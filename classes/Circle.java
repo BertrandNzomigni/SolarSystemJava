@@ -1,6 +1,9 @@
 package classes;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import interfaces.Displayable;
 import interfaces.SpacePanel;
 
@@ -21,6 +24,11 @@ public class Circle implements Displayable {
     public void display(Graphics g,SpacePanel panel) {
         g.setColor(color);
         g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
+    }
+
+    @Override
+    public List<Displayable> components() {
+        return new ArrayList<Displayable>();
     }
 }
 

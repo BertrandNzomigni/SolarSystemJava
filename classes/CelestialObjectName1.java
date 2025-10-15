@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 
@@ -14,6 +16,7 @@ import interfaces.Camera;
 import interfaces.CelestialObject;
 import interfaces.CelestialObjectName;
 import interfaces.Command;
+import interfaces.Displayable;
 import interfaces.SpacePanel;
 
 
@@ -61,6 +64,11 @@ public class CelestialObjectName1 implements CelestialObjectName {
         if (onClickCommand != null) {
             onClickCommand.execute();
         }
+    }
+
+    @Override
+    public List<Displayable> components() {
+        return new ArrayList<Displayable>();
     }
     
 }

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import interfaces.Displayable;
 import interfaces.SpacePanel;
@@ -34,6 +36,11 @@ public class Text implements Displayable{
         int textWidth = metrics.stringWidth(content);
 
         g.drawString(content, x - textWidth/2, y);
+    }
+
+    @Override
+    public List<Displayable> components() {
+        return new ArrayList<Displayable>();
     }
     
 }

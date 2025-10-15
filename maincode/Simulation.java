@@ -18,7 +18,6 @@ import classes.NameFactory1;
 import classes.NameManager1;
 
 import interfaces.Camera;
-import interfaces.CelestialObject;
 import interfaces.Displayable;
 import interfaces.FutureStateGenerator;
 import interfaces.SolarSystem;
@@ -41,6 +40,7 @@ public class Simulation {
     static SolarSystem system;
     static NameManager nameManager;
     static Timer timer;
+    static List<Displayable> menus;
 
 
     public static void main(String[] args) {
@@ -64,6 +64,8 @@ public class Simulation {
         circleFactory = new CircleFactory1(system,camera);
         
         panel = new SpacePanel1();
+
+        menus = new ArrayList<Displayable>();
 
         setup_name_generation_and_enable_every_planet_name_display();
 
@@ -90,7 +92,12 @@ public class Simulation {
                         case KeyEvent.VK_X: camera.change_zoom_rate_by_factor_multiplication(1.2); break;   // zoom in
                         case KeyEvent.VK_C: camera.change_zoom_rate_by_factor_multiplication(1/1.2); break; // zoom out
                         case KeyEvent.VK_F:                               // follow first planet for example
-                            camera.follow(null);;
+                            if (navigationMenuPresent()){
+                                removeNavigationMenu();
+                            }
+                            else{
+                                menus.add(new NavigationMenu1(600,600,system.getObjects(),camera));
+                            }
                             break;
                         case KeyEvent.VK_P: camera.follow(null); break;   // stop following
                         case KeyEvent.VK_LEFT: camera.move_on_x_axis(10); break;
@@ -142,12 +149,23 @@ public class Simulation {
         nameManager.writeNames();
         NavigationMenu nav = new NavigationMenu1(600,600,system.getObjects(),camera);
 
-        panel.addNewDisplayable((Displayable)nav,Long.valueOf(3));
-        displayables = new ArrayList<Displayable>();
-        displayables.addAll(nav.get_names());
+        for (Displayable menu : menus){
+            panel.addNewDisplayable(menu,Long.valueOf(3));
+        }
 
-        panel.addNewDisplayables(displayables,Long.valueOf(4));
         panel.repaint();
+    }
+
+    public static boolean navigationMenuPresent() {
+        for (Displayable menu : menus) {
+            if (menu instanceof NavigationMenu) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void removeNavigationMenu() {
+        menus.removeIf(menu -> menu instanceof NavigationMenu);
     }
 }
 

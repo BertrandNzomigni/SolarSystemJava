@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,6 +39,11 @@ public class Trajectory implements Displayable {
         Camera newCamera = (Camera)camera.copy();
         newCamera.follow(cameraSpots.get(indice));
         return newCamera.worldToScreen(locations.get(indice));
+    }
+
+    @Override
+    public List<Displayable> components() {
+        return new ArrayList<Displayable>();
     }
     
 }
